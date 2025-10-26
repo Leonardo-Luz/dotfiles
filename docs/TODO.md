@@ -18,7 +18,7 @@
 - [ ] Fix missing icons (Font Awesome is deprecated and has been changed to woff2 font)
 
 - [ ] add packages: raylib, javafx
-- [ ] search about packages and maybe add: nm-applet, nwg-look, qt6ct
+- [ ] search about packages and maybe add: nm-applet, nwg-look, qt6ct, modemmanager
 
 - [x] add opencode
 - [x] add terminal-based mail (neomutt)
