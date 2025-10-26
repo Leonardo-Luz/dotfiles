@@ -21,6 +21,7 @@ essentials=(
 
 # === UTILITIES ===
 utilities=(
+  hyprpicker
   htop # service manager
   github-cli # gh
   bat # file viewer
