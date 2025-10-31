@@ -1,0 +1,121 @@
+* {
+    border: none;
+    border-radius: 0px;
+
+    font-family: "Fira Code Nerd Font", Iosevka;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+
+    min-height: 0;
+}
+
+#window {
+    background: #000000; /* Retro background */
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 0px;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 1.0); /* solid black bar */
+    border-bottom: 0px solid #000000;
+    color: #13a10e; /* Retro green text */
+}
+
+.modules-left, .modules-center, .modules-right {
+    background: rgba(0, 0, 0, 0.0); /* transparent modules */
+    padding: 5px;
+    margin: 8px;
+    margin-bottom: 6px;
+}
+
+.modules-left {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modules-right {
+    padding-right: 10px;
+}
+
+#workspaces {
+    background-color: transparent;
+}
+#workspaces button {
+    padding: 2px;
+    border-radius: 16px;
+    color: #13a10e; /* green */
+}
+
+#workspaces button.active {
+    padding: 0px 6px;
+    color: #000000; /* text inside active workspace */
+    background-color: #16ba10; /* lighter green active bg */
+    border-radius: 8px;
+}
+
+#custom-playerctl, #backlight, #disk, #memory, #cpu, #temperature, #custom-date, #custom-lock, #clock, #battery, #pulseaudio, #network, #custom-randwall, #custom-launcher, #idle_inhibitor {
+    background: transparent;
+    padding: 5px 12px;
+    color: #13a10e; /* green text */
+}
+
+#tray {
+    border: 0px solid #000000;
+    background-color: #16ba10; /* retro green tray */
+    border-radius: 0px;
+    padding: 0px 10px;
+    box-shadow: none;
+}
+
+#battery {
+    padding: 5px 15px 5px 10px;
+    border-radius: 0px;
+    color: #13a10e;
+}
+
+#battery.charging {
+    color: #16ba10;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #f77777;
+    color: #000000;
+    box-shadow: none;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #FF4444;
+    color: #000000;
+    box-shadow: none;
+}
+
+#custom-ping {
+    padding: 5px 12px;
+    border-radius: 0px;
+    color: #13a10e;
+}
+
+#custom-ping.good {
+    color: #16ba10;
+}
+
+#custom-ping.warning {
+    background-color: #f77777;
+    color: #000000;
+    box-shadow: none;
+}
+
+#custom-ping.critical {
+    background-color: #FF4444;
+    color: #000000;
+    box-shadow: none;
+}
+
+#pulseaudio.muted {
+    background: transparent;
+    color: #13a10e;
+    padding: 0px 12px;
+    font-size: 26px;
+}

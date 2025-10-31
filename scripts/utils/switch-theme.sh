@@ -1,63 +1,56 @@
-#!/bin/bash
-# switch-theme.sh
-# Usage: ./switch-theme.sh light  OR  ./switch-theme.sh dark
-
+#!/usr/bin/env bash
 set -e
 
-THEME="$1"
-THEME_DIR="$HOME/.config/themes/$THEME"
-HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
+# --- Configuration ---
+THEMES_DIR="$HOME/.config/themes"
+CURRENT_LINK="$THEMES_DIR/current"
 
-if [[ -z "$THEME" ]]; then
-    echo "Usage: $0 <light|dark>"
+theme="$1"
+theme_dir="$THEMES_DIR/$theme"
+
+if [ -z "$theme" ]; then
+    echo "Usage: $0 <theme>"
     exit 1
 fi
 
-if [[ ! -d "$THEME_DIR" ]]; then
-    echo "Theme directory not found: $THEME_DIR"
+if [ ! -d "$theme_dir" ]; then
+    echo "Theme '$theme' not found in $THEMES_DIR"
     exit 1
 fi
 
-echo "Switching to theme: $THEME"
+# --- Update current symlink ---
+ln -nsf "$theme_dir" "$CURRENT_LINK"
+echo "→ Switching to theme: $theme"
 
-# Copy configs
-cp "$THEME_DIR/fzf.zsh"     "$HOME/.zshrc.d/styles/fzf.zsh"
-cp "$THEME_DIR/ghostty"     "$HOME/.config/ghostty/config"
-cp "$THEME_DIR/mako"        "$HOME/.config/mako/config"
-cp "$THEME_DIR/tmux.conf"   "$HOME/.config/tmux/tmux.conf"
-cp "$THEME_DIR/waybar.css"  "$HOME/.config/waybar/style.css"
-cp "$THEME_DIR/wofi.css"    "$HOME/.config/wofi/style.css"
+# --- Place files in their destinations ---
+ln -sf "$CURRENT_LINK/fzf.zsh" ~/.zshrc.d/styles/fzf.zsh
+ln -sf "$CURRENT_LINK/ghostty.theme" ~/.config/ghostty/themes/ghostty.theme
+ln -sf "$CURRENT_LINK/ghostty_cursor_trail.glsl" ~/.config/ghostty/shaders/ghostty_cursor_trail.glsl
+ln -sf "$CURRENT_LINK/hyprpaper.conf" ~/.config/hypr/hyprpaper.conf
+ln -sf "$CURRENT_LINK/mako" ~/.config/mako/config
+ln -sf "$CURRENT_LINK/tmux_theme.conf" ~/.config/tmux/themes/tmux_theme.conf
+ln -sf "$CURRENT_LINK/waybar.css" ~/.config/waybar/style.css
+ln -sf "$CURRENT_LINK/wofi.css" ~/.config/wofi/style.css
+ln -sf "$CURRENT_LINK/appearance.conf" ~/.config/hypr/hyprland/appearance.conf
+ln -sf "$CURRENT_LINK/ohmyzsh.zsh" ~/.zshrc.d/ohmyzsh/ohmyzsh.zsh
 
-# Reload/restart apps
-if pgrep -x "waybar" >/dev/null; then
-    killall -q waybar && waybar &
+# --- Reload / refresh components ---
+
+# Hyprland wallpaper
+pkill hyprpaper
+hyprpaper & disown
+
+# Waybar
+pkill waybar
+waybar & disown
+
+# Mako
+pkill mako
+mako & disown
+
+# Reload zsh config for FZF (optional)
+if [ -n "$ZSH_VERSION" ]; then
+    source ~/.zshrc
 fi
 
-if pgrep -x "mako" >/dev/null; then
-    makoctl reload
-fi
-
-if [[ -n "$TMUX" ]]; then
-    tmux source-file "$HOME/.config/tmux/tmux.conf"
-fi
-
-# Reload Zsh to apply fzf theme
-source "$HOME/.zshrc"
-
-# Set the correct wallpaper based on theme
-if [[ "$THEME" == "light" ]]; then
-    WALLPAPER="~/dotfiles/wallpapers/wallpaper12.jpg"
-else
-    WALLPAPER="~/dotfiles/wallpapers/wallpaper8.png"
-fi
-
-# Update the last line of the Hyprpaper config safely
-if [[ -f "$HYPRPAPER_CONF" ]]; then
-    sed -i "\$s|.*|wallpaper = ,$WALLPAPER|" "$HYPRPAPER_CONF"
-fi
-
-# Apply the wallpaper immediately
-hyprctl hyprpaper wallpaper ",$WALLPAPER"
-
-notify-send "Theme switched to $THEME" "Reload terminal to apply all changes."
-echo "Reload terminal or reboot to apply all changes."
+notify-send "Theme switched to $theme"

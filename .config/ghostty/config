@@ -62,4 +62,4 @@ quick-terminal-autohide = false
 # custom-shader = shaders/retro-terminal.glsl
 # custom-shader = shaders/matrix-wall.glsl
 
-# custom-shader = shaders/cursor_smear.glsl
+# custom-shader = shaders/ghostty_cursor_trail.glsl

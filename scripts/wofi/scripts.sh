@@ -40,6 +40,10 @@ case "$CHOICE" in
     notify-send --app-name=Notification "$TEXT" "state: $CLASS"
     exit
     ;;
+  "switch-theme.sh")
+    chosen=$(ls ~/.config/themes | grep -v current | wofi --dmenu --prompt "Select theme:")
+    [ -n "$chosen" ] && $HOME/dotfiles/scripts/utils/switch-theme.sh "$chosen"
+    ;;
   *)
     OUTPUT="$("$DIR/$CHOICE")"
     notify-send --app-name=Notification "$OUTPUT"

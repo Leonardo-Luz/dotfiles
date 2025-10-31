@@ -1,0 +1,33 @@
+#window {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+    font-family: "FiraCode Nerd Font", monospace;
+    font-size: 20px;
+    color: #13a10e;
+}
+
+#entry {
+    padding: 8px;
+    margin: 4px 8px;
+    border-radius: 4px;
+    color: #13a10e;
+    background-color: #001100;
+}
+
+#entry:selected {
+    background-color: #16ba10;
+    color: #000000;
+    border: none;
+    font-weight: bold;
+    box-shadow: inset 0px 2px 5px rgba(0,0,0,0.2);
+    outline: none;
+}
+
+#input * {
+    color: transparent;
+}
+
+#entry:selected * {
+    background-color: #16ba10;
+    color: #000000;
+}
