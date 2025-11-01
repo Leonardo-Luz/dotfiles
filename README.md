@@ -61,7 +61,7 @@ Keep your environment updated and synced using the commands below.
     RUN_SCRIPT=true config-sync
 ```
 
-* Useful Links
+### Useful Links
 
 * [Arch System Maintenance](https://wiki.archlinux.org/title/System_maintenance)
 * [Nerd Font Icons](https://www.nerdfonts.com/cheat-sheet)
