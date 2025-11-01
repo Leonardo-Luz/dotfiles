@@ -14,26 +14,27 @@ See [INSTALL.md](./INSTALL.md) for setup instructions.
 ## Themes
 
 <details open>
-  <summary><strong>Available Themes</strong></summary>
-
-  ### Light
+  <summary><strong>Light Theme</strong></summary>
   <p align="center">
     <img src="./screenshots/light_1.png" alt="Light Theme 1" width="49%">
     <img src="./screenshots/light_2.png" alt="Light Theme 2" width="49%">
   </p>
+</details>
 
-  ### Retro
+<details>
+  <summary><strong>Retro Theme</strong></summary>
   <p align="center">
     <img src="./screenshots/retro_1.png" alt="Retro Theme 1" width="49%">
     <img src="./screenshots/retro_2.png" alt="Retro Theme 2" width="49%">
   </p>
+</details>
 
-  ### Solarized
+<details>
+  <summary><strong>Solarized Theme</strong></summary>
   <p align="center">
     <img src="./screenshots/solarized_1.png" alt="Solarized Theme 1" width="49%">
     <img src="./screenshots/solarized_2.png" alt="Solarized Theme 2" width="49%">
   </p>
-
 </details>
 
 ## After Setup
