@@ -55,6 +55,6 @@ set('n', '<leader>sm', function()
   builtin.find_files { cwd = '$HOME/dotfiles/' }
 end, { desc = '[S]earch [M]y Dotfiles' })
 
-set('n', '<leader>so', function()
+set('n', 'zf', function()
   builtin.spell_suggest {}
-end, { desc = '[S]earch [S]pell Sugestion' })
+end, {})

@@ -1,6 +1,11 @@
 return {
   {
     'leonardo-luz/accuracy.nvim',
-    opts = {}
+    opts = {
+      map_size = {
+        x = 20,
+        y = 30
+      }
+    }
   }
 }

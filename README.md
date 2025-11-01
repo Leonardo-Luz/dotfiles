@@ -1,46 +1,66 @@
-## Dotfiles
+# Dotfiles
 
-* My arch environment config files;
-* this README can be outdated so be careful;
-* Do not use this unless you know what you're doing;
-* Fork this if you want to use it – I'll be pushing updates that might break things.
+*My Arch environment configuration files.*
 
-* [**INSTALL**](./INSTALL.md)
+> **Warning:**  
+> This setup is customized for my workflow.  
+> Do not use unless you know what you’re doing.  
+> Feel free to fork this repo if you want to adapt it — I push updates that may break existing configs.
 
-## AFTER SETUP
+## Installation
 
-* use `git pull` in dotfiles to keep it up to date
-* use these commands to update the system from time to time
+See [INSTALL.md](./INSTALL.md) for setup instructions.
 
-```sh
+## Themes
 
-    # add new packages here
-    update-pacman # -Syu for complete update
+<details open>
+  <summary><strong>Available Themes</strong></summary>
 
-```
+  ### Light
+  <p align="center">
+    <img src="./screenshots/light_1.png" alt="Light Theme 1" width="49%">
+    <img src="./screenshots/light_2.png" alt="Light Theme 2" width="49%">
+  </p>
 
-```sh
+  ### Retro
+  <p align="center">
+    <img src="./screenshots/retro_1.png" alt="Retro Theme 1" width="49%">
+    <img src="./screenshots/retro_2.png" alt="Retro Theme 2" width="49%">
+  </p>
 
-    # add new packages here
-    update-yay # -Suy for complete update
+  ### Solarized
+  <p align="center">
+    <img src="./screenshots/solarized_1.png" alt="Solarized Theme 1" width="49%">
+    <img src="./screenshots/solarized_2.png" alt="Solarized Theme 2" width="49%">
+  </p>
 
-```
+</details>
 
-```sh
+## After Setup
 
-    # WARN: THIS COMMAND REPLACES CONFIG FILES
+Keep your environment updated and synced using the commands below.
+
+### System Updates
+
+```bash
+
+    # Update system packages
+    update-pacman
+
+    # Full system upgrade (-Syu)
+    update-pacman -Syu
+
+    # Update AUR packages
+    update-yay
+
+    # Full AUR upgrade (-Suy)
+    update-yay -Suy
+
+    # Sync and replace configuration files
     RUN_SCRIPT=true config-sync
-
 ```
 
-```sh
-
-    # WARN: THIS COMMAND REPLACES SHELL FILES
-    RUN_SCRIPT=true shell-sync
-
-```
-
-* Important Links
+* Useful Links
 
 * [Arch System Maintenance](https://wiki.archlinux.org/title/System_maintenance)
 * [Nerd Font Icons](https://www.nerdfonts.com/cheat-sheet)

@@ -6,20 +6,31 @@ if [ "$RUN_SCRIPT" != "true" ]; then
   exit 0
 fi
 
-echo "==> Updating config files..."
-notify-send --app-name=Config "Sync" "Updating config files..."
+echo "==> Linking config files..."
+notify-send --app-name=Config "Sync" "Linking config files..."
 
-SRC="$HOME/dotfiles/.config/"
-DEST="$HOME/.config/"
+SRC="$HOME/dotfiles/.config"
+DEST="$HOME/.config"
 
 if [ -d "$SRC" ]; then
     # Create the destination directory if it doesn't exist
     mkdir -p "$DEST"
 
-    # Copy all files and subdirectories recursively
-    cp -rf "$SRC"* "$DEST"
+    # Loop through all configs in the source directory
+    for config in "$SRC"/*; do
+        target="$DEST/$(basename "$config")"
+        ln -sf "$config" "$target"
+        echo "==> Linked $(basename "$config")"
+    done
 
-    echo "==> Config files moved to $DEST."
+    echo "==> All configs linked to $DEST."
 else
     echo "==> Source config directory not found: $SRC."
+fi
+
+ZSH_SRC="$HOME/dotfiles/zsh"
+
+if [ -d "$ZSH_SRC" ]; then
+  ln -sf "$ZSH_SRC/.zshrc" "$HOME/.zshrc"
+  echo "==> zsh file linked"
 fi

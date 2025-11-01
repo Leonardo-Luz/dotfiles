@@ -302,4 +302,3 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     // NOTE: May need to be iTime/iTimeDelta dependent
     fragColor = vec4(FADE_FACTOR*fragColor.rgb, FADE_FACTOR);
 }
-

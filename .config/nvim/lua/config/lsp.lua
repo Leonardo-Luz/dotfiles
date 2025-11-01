@@ -126,7 +126,7 @@ local servers = {
         heex = 'phoenix-heex',
       },
     },
-    filetypes = extend('tailwindcss', 'filetypes', { 'ocaml.mlx' }),
+    filetypes = extend('tailwindcss', 'filetypes', { 'ocaml.mlx', 'typescriptreact' }),
     settings = {
       tailwindCSS = {
         experimental = {

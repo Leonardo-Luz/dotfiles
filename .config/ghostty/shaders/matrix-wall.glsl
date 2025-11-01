@@ -1,5 +1,5 @@
 #define FONT_GREEN vec3(0.0, 1.0, 0.0)      // desired font color
-#define BLACK_BLEND_THRESHOLD 0.4           // threshold to detect font pixels
+#define BLACK_BLEND_THRESHOLD 1.0           // threshold to detect font pixels
 
 void mainImage(out vec4 fragColor, vec2 fragCoord) {
     vec2 uv = fragCoord.xy / iResolution.xy;

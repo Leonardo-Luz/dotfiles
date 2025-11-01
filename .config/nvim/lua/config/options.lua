@@ -25,8 +25,8 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.updatetime = 200
+vim.opt.timeoutlen = 200
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true

@@ -2,4 +2,4 @@ source ~/.config/neomutt/settings
 source ~/.config/neomutt/colors
 source ~/.config/neomutt/mappings
 
-# source ~/.config/neomutt/accounts/gmail
+source ~/.config/neomutt/accounts/gmail

@@ -7,7 +7,7 @@ pcall(function()
   asciis = require 'custom.dashboard'
 end)
 
-local current_header = 'leovim'
+local current_header = 'leovim_dos'
 local current_setup = 'doom'
 
 local headers = {

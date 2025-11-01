@@ -33,6 +33,7 @@ utilities=(
   imagemagick # image render on terminal
   neomutt # email client
   traceroute
+  cava # music visualizer
 )
 
 # === FONTS ===

@@ -1,3 +1,7 @@
+const vec4 TRAIL_COLOR = vec4(0.1725, 0.3012, 0.5992, 1.0); // #2C4D98
+const float OPACITY = 0.6;
+const float DURATION = 0.20;
+
 float getSdfRectangle(in vec2 p, in vec2 xy, in vec2 b)
 {
     vec2 d = abs(p - xy) - b;
@@ -59,17 +63,6 @@ vec2 getRectangleCenter(vec4 rectangle) {
 float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
-
-// Use this site to convert from HEX to vec4
-// https://enchanted.games/app/colour-converter/
-// const vec4 TRAIL_COLOR = vec4(1., 1., 0., 1.0); // yellow
-// const vec4 TRAIL_COLOR = vec4(0.976, 0.302, 1.0, 1.0); // cursor
-// const vec4 TRAIL_COLOR = vec4(0.914, 0.702, 0.992, 1.0); // light cursor
-// const vec4 TRAIL_COLOR = vec4(0.016, 0.82, 0.976, 1.0); // cyan
-// const vec4 TRAIL_COLOR = vec4(0.216, 0.957, 0.6, 1.0); // green
-const vec4 TRAIL_COLOR = vec4(0, 0, 0, 1.0); // black
-const float OPACITY = 0.6;
-const float DURATION = 0.20; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {

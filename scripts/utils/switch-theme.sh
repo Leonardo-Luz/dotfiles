@@ -33,6 +33,7 @@ ln -sf "$CURRENT_LINK/waybar.css" ~/.config/waybar/style.css
 ln -sf "$CURRENT_LINK/wofi.css" ~/.config/wofi/style.css
 ln -sf "$CURRENT_LINK/appearance.conf" ~/.config/hypr/hyprland/appearance.conf
 ln -sf "$CURRENT_LINK/ohmyzsh.zsh" ~/.zshrc.d/ohmyzsh/ohmyzsh.zsh
+ln -sf "$CURRENT_LINK/appearance.py" ~/.config/qutebrowser/config/appearance.py
 
 # --- Reload / refresh components ---
 

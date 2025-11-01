@@ -1,4 +1,4 @@
 .env
-zsh/.zshrc.d/99-local.zsh
+99-local.zsh
 
 accounts
