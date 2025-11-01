@@ -24,12 +24,12 @@ window#waybar {
 }
 
 .modules-left, .modules-center, .modules-right {
-    background: rgba(240, 225, 120, 1.0);
+    background: #fef49c;
     border-radius: 12px;
     padding: 5px;
     margin: 10px;
     margin-bottom: 6px;
-    box-shadow: 0px 8px 8px -10px rgba(0,0,0,0.52);
+    box-shadow: 0px 4px 4px -5px rgba(0,0,0,0.52);
 }
 
 .modules-left {

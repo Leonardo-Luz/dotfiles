@@ -1,22 +1,22 @@
 #window {
-    background-color: #e1e2e799; /* #f0e178 with opacity */
+    background-color: rgba(245, 245, 245, 0.9);
     border-radius: 8px;
     font-family: "FiraCode Nerd Font", monospace;
     font-size: 20px;
-    color: #3760bf; /* foreground text */
+    color: #2e2e2e;
 }
 
 #entry {
     padding: 8px;
     margin: 4px 8px;
     border-radius: 4px;
-    color: #3760bf; /* secondary text */
-    background-color: #e0e1e3; /* subtle lighter variant of background */
+    color: #555555;
+    background-color: #e8e8e8;
 }
 
 #entry:selected {
-    background-color: #268bd2; /* Solarized blue selection */
-    color: #f0f0f0; /* light text for contrast */
+    background-color: #d0d0d0;
+    color: #000000;
     border: none;
     font-weight: bold;
     box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
@@ -37,11 +37,10 @@
 }
 
 #entry:selected * {
-    background-color: #268bd2;
-    color: #e0e1e3; /* light Solarized text on selection */
+    background-color: #d0d0d0;
+    color: #3399ff;
 }
 
 #entry * {
-    background-color: #e0e1e3; /* subtle entry background */
-    color: #3760bf;
+    background-color: #e8e8e8;
 }

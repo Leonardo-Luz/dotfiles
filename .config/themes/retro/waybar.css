@@ -50,8 +50,7 @@ window#waybar {
 
 #workspaces button.active {
     padding: 0px 6px;
-    color: #000000; /* text inside active workspace */
-    background-color: #16ba10; /* lighter green active bg */
+    color: #16ba10; /* text inside active workspace */
     border-radius: 8px;
 }
 

@@ -27,6 +27,15 @@
     color: transparent;
 }
 
+#input {
+    background-color: transparent;
+    font-size: 0px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin: -10;
+}
+
 #entry:selected * {
     background-color: #16ba10;
     color: #000000;
