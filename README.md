@@ -37,6 +37,14 @@ See [INSTALL.md](./INSTALL.md) for setup instructions.
   </p>
 </details>
 
+<details>
+  <summary><strong>Autumn Theme</strong></summary>
+  <p align="center">
+    <img src="./screenshots/autumn_1.png" alt="Autumn Theme 1" width="49%">
+    <img src="./screenshots/autumn_2.png" alt="Autumn Theme 2" width="49%">
+  </p>
+</details>
+
 ## After Setup
 
 Keep your environment updated and synced using the commands below.

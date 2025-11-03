@@ -1,0 +1,13 @@
+# Solarized Custom Theme
+
+background = "#f0e178"
+foreground = "#3b3a32"
+accent     = "#268bd2"
+
+red        = "#dc322f"
+green      = "#859900"
+yellow     = "#b58900"
+blue       = "#268bd2"
+magenta    = "#d33682"
+cyan       = "#2aa198"
+orange     = "#cb4b16"

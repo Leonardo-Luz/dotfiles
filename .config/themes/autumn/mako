@@ -1,0 +1,32 @@
+font=Fira Code Nerd Font 12
+format=<b>%a - %s</b>\n\n%b
+sort=-time
+output=DP-2
+layer=overlay
+background-color=#251200ee
+width=450
+height=250
+margin=20
+padding=20
+border-size=4
+border-color=#b5955e
+border-radius=0
+icons=1
+max-icon-size=64
+default-timeout=5000
+
+[urgency=low]
+background-color=#251200ee
+text-color=#dec165
+border-color=#be8a13AA
+
+[urgency=normal]
+background-color=#251200ee
+text-color=#dec165
+border-color=#be8a13AA
+
+[urgency=high]
+background-color=#251200ee
+text-color=#be8a13
+border-color=#be8a13AA
+default-timeout=0
