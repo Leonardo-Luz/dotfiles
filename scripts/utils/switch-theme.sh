@@ -35,6 +35,8 @@ ln -sf "$CURRENT_LINK/appearance.conf" ~/.config/hypr/hyprland/appearance.conf
 ln -sf "$CURRENT_LINK/ohmyzsh.zsh" ~/.zshrc.d/ohmyzsh/ohmyzsh.zsh
 ln -sf "$CURRENT_LINK/appearance.py" ~/.config/qutebrowser/config/appearance.py
 ln -sf "$CURRENT_LINK/obs-theme.obt" ~/.config/obs-studio/themes/justedit.obt
+ln -sf "$CURRENT_LINK/qt.conf" ~/.config/qt5ct/colors/qt.conf
+ln -sf "$CURRENT_LINK/kvtheme.kvconfig" ~/.local/share/color-schemes/kvtheme/kvtheme.kvconfig
 
 # --- Reload / refresh components ---
 

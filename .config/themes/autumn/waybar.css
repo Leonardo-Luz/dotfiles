@@ -60,15 +60,15 @@ window#waybar {
 
 #custom-playerctl, #backlight, #disk, #memory, #cpu, #temperature, #custom-date, #custom-lock, #clock, #battery, #pulseaudio, #network, #custom-randwall, #custom-launcher, #idle_inhibitor {
     background: transparent;
-    padding: 5px 12px 5px 12px;
+    padding: 5px 12px;
 }
 
 #tray {
     border: 0px solid #282828;
-    background-color: #aaaaaa;
-    border-radius: 12px;
+    background-color: #ae9135;
+    border-radius: 4px;
     padding: 0px 10px;
-    box-shadow: 0px 8px 8px -10px rgba(0,0,0,0.8) inset;
+    box-shadow: 0px 4px 4px -5px rgba(0,0,0,0.8) inset;
 }
 
 #battery {
