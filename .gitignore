@@ -3,3 +3,10 @@
 
 accounts
 current
+
+# ArchISO build artifacts
+out/
+work/
+*.iso
+*.img
+*.sfs

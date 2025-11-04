@@ -1,15 +1,12 @@
-# === AUR PACKAGES ===
+# AUR Packages
 yay_pkgs=(
   hyprland
   hyprpaper
   waybar
   wlogout-git
   neofetch
-  opencode-bin # AI Agent
-  dolphin # File Manager
-  neovim-nightly-bin # File Editor (terminal based)
-  # android-studio
-  # geforcenow-electron # Geforce Now Interface
+  dolphin
+  neovim-nightly-bin
 )
 
 echo "==> Installing AUR packages..."

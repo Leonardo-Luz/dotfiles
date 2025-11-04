@@ -30,8 +30,3 @@ else
   echo "oh-my-zsh not installed!"
   exit 1
 fi
-
-# === ZSHRC PATH EXPORT ===
-if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' ~/.zshrc; then
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
-fi

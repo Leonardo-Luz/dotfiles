@@ -25,3 +25,40 @@
 - [ ] add terminal-based music player (with ytb support)
 
 - [ ] animated wallpapers (yay -S mpvpaper)
+
+## ISO
+
+- [ ] Automate `archinstall`
+- [ ] Setup SSH
+- [ ] Edit grub
+- [x] Install Base Packages
+- [x] Setup Script (TUI)
+    > this should start as an CLI and update to a TUI later
+    > Pre-Prompt for what the user will install
+        - [x] Terminal (default ghostty, alacritty, wezterm) (only ghostty has personalized themes)
+        - [x] Browser: qutebrowser, firefox,
+        - [x] Virtual Manager
+        - [x] Emulators
+        - [x] Choose packages:
+            _ [x] jenkins
+            - [x] neomutt
+            - [x] tlp, tlp-rdw
+            - [x] docker
+            - [x] dotnet
+            - [x] flutter
+            - [x] jmeter
+            - [x] laravel
+            - [x] latex
+            - [x] mariadb
+            - [x] mongodb
+            - [x] ngrok
+            - [x] postgres
+            - [x] rust
+            - [x] unity
+            - [x] opencode-bin
+            - [x] geforcenow-electron
+            - [-] android-studio
+    - [x] Theme (default light, solarized, autumn, retro) (can be updated later)
+    > Auto Install
+    - [x] yay
+    - [x] ohmyzsh (after zsh install)
