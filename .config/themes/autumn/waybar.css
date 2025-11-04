@@ -26,11 +26,11 @@ window#waybar {
 
 .modules-left, .modules-center, .modules-right {
     background: rgba(37, 18, 0, 0.9);
-    border-radius: 0px;
+    border-radius: 8px;
     padding: 5px;
     margin: 10px 20px 0px 20px;
     margin-bottom: 6px;
-    border: 4px solid #be8a13;
+    border: 3px solid #be8a13;
 }
 
 .modules-left {
