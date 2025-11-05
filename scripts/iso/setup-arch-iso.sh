@@ -9,7 +9,6 @@ TERMINAL="ghostty"
 BROWSER="firefox"
 THEME="light"
 CUSTOM_PACKAGES=()
-VIRT_MANAGER=false
 EMULATORS=()
 NGROK_TOKEN=""
 RUN_SCRIPT=true
@@ -35,10 +34,6 @@ mkdir -p "$HOME/.development/tmp"
 "$HOME/dotfiles/scripts/iso/config/terminal.sh"
 "$HOME/dotfiles/scripts/iso/config/browser.sh"
 "$HOME/dotfiles/scripts/iso/config/custom-packages.sh"
-
-if [[ "$VIRT_MANAGER" == true ]]; then
-  "$HOME/dotfiles/scripts/stand-alone/virt-manager.sh"
-fi
 
 if [[ "${#EMULATORS[@]}" -gt 0 ]]; then
   sudo pacman -S --needed --noconfirm "${EMULATORS[@]}"
