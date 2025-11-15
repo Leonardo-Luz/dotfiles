@@ -11,25 +11,30 @@
 }
 
 window#waybar {
-    background: rgba(34, 36, 54, 1);
+    background: rgba(34, 36, 54, 0);
     border-bottom: 0px solid #222436;
     color: #c8d3f5;
     border-radius: 0px 0px 26px 26px;
 }
 
 .modules-left, .modules-center, .modules-right {
-    background: rgba(0, 0, 0, 0.0);
-    padding: 2px;
-    margin: 2px;
+    background: rgba(34, 36, 54, 0.8);
+    margin: 0px 6px;
+    border-radius: 0px 0px 10px 10px;
+    border-left: 2px solid #c8d3f5;
+    border-right: 2px solid #c8d3f5;
+    border-bottom: 2px solid #c8d3f5;
 }
 
 .modules-left {
     padding-left: 10px;
     padding-right: 10px;
+    border-radius: 0px 0px 10px 26px;
 }
 
 .modules-right {
     padding-right: 10px;
+    border-radius: 0px 0px 26px 10px;
 }
 
 #workspaces {
