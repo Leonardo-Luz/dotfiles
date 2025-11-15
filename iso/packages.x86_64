@@ -203,3 +203,5 @@ ufw
 libuv
 mono-msbuild
 gum
+ffmpeg
+yt-dlp

@@ -1,0 +1,115 @@
+* {
+    border: none;
+    border-radius: 0px;
+
+    font-family: "Fira Code Nerd Font", Iosevka;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(34, 36, 54, 1);
+    border-bottom: 0px solid #222436;
+    color: #c8d3f5;
+    border-radius: 0px 0px 26px 26px;
+}
+
+.modules-left, .modules-center, .modules-right {
+    background: rgba(0, 0, 0, 0.0);
+    padding: 2px;
+    margin: 2px;
+}
+
+.modules-left {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modules-right {
+    padding-right: 10px;
+}
+
+#workspaces {
+    background-color: transparent;
+}
+#workspaces button {
+    padding: 2px;
+    border-radius: 16px;
+    color: #c8d3f5;
+}
+
+#workspaces button.active {
+    padding: 0px 6px;
+    color: #ffc777; /* text inside active workspace */
+    border-radius: 8px;
+}
+
+#custom-playerctl, #backlight, #disk, #memory, #cpu, #temperature, #custom-date, #custom-lock, #clock, #battery, #pulseaudio, #network, #custom-randwall, #custom-launcher, #idle_inhibitor {
+    background: transparent;
+    padding: 5px 12px;
+    color: #c8d3f5; /* green text */
+}
+
+#tray {
+    border: 0px solid #222436;
+    background-color: #051016;
+    border-radius: 6px;
+    padding: 0px 8px;
+    box-shadow: none;
+}
+
+#battery {
+    padding: 0px 20px 0px 10px;
+    border-radius: 6px;
+    color: #c8d3f5;
+}
+
+#battery.charging {
+    color: #ffc777;
+}
+
+#battery.warning:not(.charging) {
+    margin: 0px 10px 0px 10px;
+    background-color: #f77777;
+    color: #222436;
+    box-shadow: none;
+}
+
+#battery.critical:not(.charging) {
+    margin: 0px 10px 0px 10px;
+    background-color: #FF4444;
+    color: #222436;
+    box-shadow: none;
+}
+
+#custom-ping {
+    padding: 5px 12px;
+    border-radius: 0px;
+    color: #c8d3f5;
+}
+
+#custom-ping.good {
+    color: #ffc777;
+}
+
+#custom-ping.warning {
+    background-color: #f77777;
+    color: #222436;
+    box-shadow: none;
+}
+
+#custom-ping.critical {
+    background-color: #FF4444;
+    color: #222436;
+    box-shadow: none;
+}
+
+#pulseaudio.muted {
+    background: transparent;
+    color: #c8d3f5;
+    padding: 0px 12px;
+    font-size: 26px;
+}

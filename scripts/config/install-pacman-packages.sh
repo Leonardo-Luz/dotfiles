@@ -34,6 +34,8 @@ utilities=(
   neomutt # email client
   traceroute
   cava # music visualizer
+  yt-dlp
+  ffmpeg
 )
 
 # === FONTS ===

@@ -1,0 +1,40 @@
+#window {
+    background-color: rgba(34, 36, 54, 1);
+    font-family: "FiraCode Nerd Font", monospace;
+    font-size: 20px;
+    color: #c8d3f5;
+}
+
+#entry {
+    padding: 8px;
+    margin: 4px 8px;
+    color: #c8d3f5;
+    background-color: #1d2f56;
+}
+
+#entry:selected {
+    background-color: #2d3f76;
+    color: #c8d3f5;
+    border: none;
+    font-weight: bold;
+    box-shadow: inset 0px 2px 5px rgba(0,0,0,0.2);
+    outline: none;
+}
+
+#input * {
+    color: transparent;
+}
+
+#input {
+    background-color: transparent;
+    font-size: 0px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin: -10;
+}
+
+#entry:selected * {
+    background-color: #2d3f76;
+    color: #c8d3f5;
+}
