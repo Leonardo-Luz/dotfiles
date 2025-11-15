@@ -1,10 +1,10 @@
-# Dotfiles
+# Dotfiles (WARNING: THIS VERSION WAS NOT TESTED)
 
 *My Arch environment configuration files.*
 
 > **Warning:**  
-> This setup is customized for my workflow.  
-> Do not use unless you know what you’re doing.  
+> This setup is customized for my workflow.
+> Do not use unless you know what you’re doing.
 > Feel free to fork this repo if you want to adapt it — I push updates that may break existing configs.
 
 ## Installation
