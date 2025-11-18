@@ -24,11 +24,11 @@ return {
           "v",
           "<"
         },
-        body = "*",
+        body = "#",
         food = "x",
         start_pos = "o",
         wall = "#",
-        background = ".",
+        background = " ",
       }
     }
   }

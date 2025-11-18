@@ -4,7 +4,7 @@ return {
     opts = {
       map_size = {
         x = 20,
-        y = 30
+        y = 10
       }
     }
   }
