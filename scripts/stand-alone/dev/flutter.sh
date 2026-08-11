@@ -17,19 +17,21 @@ if ! command -v flutter &>/dev/null; then
   echo "==> Installing Flutter ${FLUTTER_VERSION}..."
 
   # Download Flutter
-  wget -c "$FLUTTER_URL" -O "flutter_${FLUTTER_VERSION}_linux.tar.xz" || {
+  TMP_DIR=$(mktemp -d)
+  wget -c "$FLUTTER_URL" -O "$TMP_DIR/flutter_linux.tar.xz" || {
     echo "Error: Failed to download Flutter. Check your internet connection and try again."
+    rm -rf "$TMP_DIR"
     exit 1
   }
 
   # Extract Flutter
-  tar -xf "flutter_${FLUTTER_VERSION}_linux.tar.xz" -C "$DEVELOPMENT_DIR" || {
+  tar -xf "$TMP_DIR/flutter_linux.tar.xz" -C "$DEVELOPMENT_DIR" || {
     echo "Error: Failed to extract Flutter archive."
+    rm -rf "$TMP_DIR"
     exit 1
   }
 
-  # Remove the archive
-  rm "flutter_${FLUTTER_VERSION}_linux.tar.xz"
+  rm -rf "$TMP_DIR"
 
   echo "Flutter installed successfully. You may need to open a new terminal or source your shell configuration file."
 

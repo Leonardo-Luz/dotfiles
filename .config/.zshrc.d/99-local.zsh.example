@@ -1,0 +1,20 @@
+# 99-local.zsh — Local overrides (not tracked by git)
+#
+# This file is sourced last in the zsh module chain.
+# Use it for machine-specific settings, secrets, and personal aliases.
+#
+# To use: cp 99-local.zsh.example 99-local.zsh
+#         then edit 99-local.zsh with your real values
+
+# === API KEYS / SECRETS ===
+# export GEMINI_API_KEY="your-api-key-here"
+# export OPENAI_API_KEY="your-api-key-here"
+# export GITHUB_TOKEN="your-token-here"
+
+# === LOCAL ALIASES ===
+# alias myapp='$HOME/documents/files/myapp.AppImage'
+# alias work-ssh='ssh user@work-server.example.com'
+
+# === MACHINE-SPECIFIC PATHS ===
+# export LOCAL_BIN="$HOME/.local/bin"
+# export PATH="$LOCAL_BIN:$PATH"

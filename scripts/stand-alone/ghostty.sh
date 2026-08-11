@@ -6,18 +6,19 @@
 #
 # better to just get the yay ghostty-git instead of running this
 
-sudo pacman -S gtk4 gtk4-layer-shell libadwaita blueprint-compiler gettext
+sudo pacman -S --needed --noconfirm gtk4 gtk4-layer-shell libadwaita blueprint-compiler gettext
 
-git clone https://github.com/ghostty-org/ghostty
+TMP_DIR=$(mktemp -d)
+git clone https://github.com/ghostty-org/ghostty "$TMP_DIR/ghostty"
 
-cd ghostty
+cd "$TMP_DIR/ghostty" || exit
 
 zig build -Doptimize=ReleaseFast
 
-mkdir -p $HOME/.local/bin
+mkdir -p "$HOME/.local/bin"
 
-mv zig-out/bin/ghostty $HOME/.local/bin/ghostty-build
+mv zig-out/bin/ghostty "$HOME/.local/bin/ghostty-build"
 
-cd ..
+cd - || exit
 
-rm -rf ghostty
+rm -rf "$TMP_DIR"

@@ -1,57 +1,236 @@
 #!/bin/bash
+set -euo pipefail
 
-set -e
+DOTFILES="$HOME/dotfiles"
+SCRIPTS="$DOTFILES/scripts"
+MARKER_FILE="$HOME/.config/.dotfiles-phase1-complete"
 
-echo "==> Updating system..."
+if ! command -v gum &>/dev/null; then
+  echo "gum is not installed. Installing..."
+  sudo pacman -S --needed --noconfirm gum
+fi
+
+gum style --border double --padding "1 2" --foreground 212 \
+  "Phase 1: System Setup"
+
+echo
+
+IS_RERUN=false
+if [ -f "$MARKER_FILE" ]; then
+  IS_RERUN=true
+  gum style --foreground 213 "Phase 1 was already completed previously."
+  gum style --foreground 255 "Re-running will re-link configs and re-install packages."
+  echo
+  gum confirm "Continue with re-run?" || exit 0
+else
+  gum style --foreground 213 "This script will:"
+  gum style --foreground 255 "  - Update the system"
+  gum style --foreground 255 "  - Install yay (AUR helper)"
+  gum style --foreground 255 "  - Install pacman & AUR packages"
+  gum style --foreground 255 "  - Link config files & wallpapers"
+  gum style --foreground 255 "  - Enable system services"
+  gum style --foreground 255 "  - Configure network, firewall, reflector"
+  gum style --foreground 255 "  - Install terminal, Qt theming, tmux"
+  echo
+  gum style --foreground 213 "zsh/oh-my-zsh will be installed in Phase 2 (after reboot)."
+  echo
+  gum confirm "Continue?" || exit 0
+fi
+
+# === UPDATE SYSTEM ===
+gum style --foreground 213 "Updating system..."
 sudo pacman -Syu --noconfirm
 
-echo "==> Installing yay..."
-"$HOME/dotfiles/scripts/stand-alone/yay.sh"
+# === INSTALL YAY ===
+if command -v yay &>/dev/null && [ "$IS_RERUN" = true ]; then
+  gum style --foreground 240 "yay already installed. Skipping."
+else
+  gum style --foreground 213 "Installing yay..."
+  "$SCRIPTS/stand-alone/yay.sh"
+fi
 
-echo "==> Installing basic pacman packages..."
-"$HOME/dotfiles/scripts/config/install-pacman-packages.sh"
+# === INSTALL PACKAGES ===
+gum style --foreground 213 "Installing pacman packages..."
+"$SCRIPTS/config/install-pacman-packages.sh"
 
-echo "==> Installing basic yay packages..."
-"$HOME/dotfiles/scripts/config/install-yay-packages.sh"
+gum style --foreground 213 "Installing AUR packages..."
+"$SCRIPTS/config/install-yay-packages.sh"
 
-echo "==> Creating documents (~/documents) directory"
+# === CREATE DIRECTORIES ===
+gum style --foreground 213 "Creating directories..."
 mkdir -p "$HOME/documents"
-
-echo "==> Creating screenshots (~/documents/screenshots) directory"
 mkdir -p "$HOME/documents/screenshots"
-
-echo "==> Creating development tools (~/.development) directory"
 mkdir -p "$HOME/.development"
 
-echo "==> Moving config files..."
-RUN_SCRIPT=true "$HOME/dotfiles/scripts/config/update-config-files.sh"
+# === LINK CONFIGS & WALLPAPERS ===
+gum style --foreground 213 "Linking config files..."
+RUN_SCRIPT=true "$SCRIPTS/config/update-config-files.sh"
 
-echo "==> Enabling system services..."
+gum style --foreground 213 "Linking wallpapers..."
+RUN_SCRIPT=true "$SCRIPTS/config/update-wallpapers-files.sh"
 
-sudo systemctl enable --now tlp # enable batery saver
-sudo systemctl enable ly.service # enable display manager
+# === ENABLE SYSTEM SERVICES ===
+gum style --foreground 213 "Enabling system services..."
+sudo systemctl enable --now tlp
+sudo systemctl enable ly.service
 
-echo "==> Installing and Configuring Network Manager"
-"$HOME/dotfiles/scripts/stand-alone/network.sh"
+# === NETWORK ===
+if [ -f /etc/NetworkManager/conf.d/wifi_backend.conf ] && [ "$IS_RERUN" = true ]; then
+  gum style --foreground 240 "Network Manager already configured. Skipping."
+else
+  gum style --foreground 213 "Configuring Network Manager..."
+  "$SCRIPTS/stand-alone/network.sh"
+fi
 
-echo "==> Installing and Configuring Reflector"
-"$HOME/dotfiles/scripts/stand-alone/reflector.sh"
+# === REFLECTOR ===
+if systemctl is-enabled reflector.timer &>/dev/null && [ "$IS_RERUN" = true ]; then
+  gum style --foreground 240 "Reflector already configured. Skipping."
+else
+  gum style --foreground 213 "Configuring Reflector..."
+  "$SCRIPTS/stand-alone/reflector.sh"
+fi
 
-echo "==> Installing and Configuring uncomplicated firewall (ufw)"
-"$HOME/dotfiles/scripts/stand-alone/ufw.sh"
+# === FIREWALL ===
+if systemctl is-enabled ufw.service &>/dev/null && [ "$IS_RERUN" = true ]; then
+  gum style --foreground 240 "Firewall (ufw) already configured. Skipping."
+else
+  gum style --foreground 213 "Configuring firewall (ufw)..."
+  "$SCRIPTS/stand-alone/ufw.sh"
+fi
 
-echo "==> Installing terminal"
-"$HOME/dotfiles/scripts/stand-alone/terminal.sh"
+# === TERMINAL ===
+gum style --foreground 213 "Installing terminal..."
+"$SCRIPTS/stand-alone/terminal.sh"
 
-echo "==> Installing and Configuring tmux"
-"$HOME/dotfiles/scripts/stand-alone/tmux.sh"
+# === QT THEMING ===
+if [ -d "$HOME/.config/qt5ct/colors" ] && [ "$IS_RERUN" = true ]; then
+  gum style --foreground 240 "Qt theming already configured. Skipping."
+else
+  gum style --foreground 213 "Configuring Qt theming (qt5ct)..."
+  "$SCRIPTS/stand-alone/style.sh"
+fi
 
-echo "==> Installing and Configuring zshell (zsh)"
-"$HOME/dotfiles/scripts/stand-alone/zsh.sh"
+# === TMUX ===
+if [ -d "$HOME/.config/tmux/plugins/catppuccin/tmux" ] && [ "$IS_RERUN" = true ]; then
+  gum style --foreground 240 "tmux already configured. Skipping."
+else
+  gum style --foreground 213 "Configuring tmux..."
+  "$SCRIPTS/stand-alone/tmux.sh"
+fi
 
-# === TO-DO REMINDERS ===
+# === DISPLAY MANAGER CONFIG ===
+gum style --foreground 213 "Configuring display manager (ly)..."
+sudo cp -f "$DOTFILES/etc/ly/hyprland.desktop" /usr/share/wayland-sessions/hyprland.desktop
+sudo cp -f "$DOTFILES/etc/ly/config.ini" /etc/ly/config.ini
+
+# === OPTIONAL COMPONENTS ===
 echo
-echo "Installation completed!"
+gum style --foreground 213 "Optional components:"
+gum style --foreground 255 "  (Space to select, Enter to confirm, Esc to skip)"
+
+OPTIONAL_LABELS=(
+  "Bluetooth"
+  "Virtualization (virt-manager)"
+  "SSH hardening (knockd + iptables)"
+  "Emulators (gba, nds, snes)"
+  "Password manager (rust-passman-cli)"
+  "Waydroid (Android container)"
+)
+
+OPTIONAL_SCRIPTS=(
+  "bluetooth.sh"
+  "virt-manager.sh"
+  "ssh.sh"
+  "emulators.sh"
+  "passman.sh"
+  "waydroid.sh"
+)
+
+SELECTED=$(gum choose --multiple --height 10 --header "Select optional components:" "${OPTIONAL_LABELS[@]}" 2>/dev/null || echo "")
+
+if [ -n "$SELECTED" ]; then
+  while IFS= read -r label; do
+    for i in "${!OPTIONAL_LABELS[@]}"; do
+      if [ "$label" = "${OPTIONAL_LABELS[$i]}" ]; then
+        script="${OPTIONAL_SCRIPTS[$i]}"
+        gum style --foreground 213 "Installing $label..."
+        if ! "$SCRIPTS/stand-alone/$script"; then
+          gum style --foreground 196 "Failed to install $label. Continuing..."
+        fi
+        break
+      fi
+    done
+  done <<< "$SELECTED"
+fi
+
+# === OPTIONAL DEV TOOLS ===
 echo
-echo "Check the ~/dotfiles/scripts/stand-alone directory for more applications"
-echo "Read the README before using your system!!!"
+gum style --foreground 213 "Dev tools:"
+gum style --foreground 255 "  (Space to select, Enter to confirm, Esc to skip)"
+
+DEV_LABELS=(
+  "Docker"
+  "Rust"
+  "Flutter"
+  "Go (relocate ~/go)"
+  ".NET"
+  "Laravel (PHP)"
+  "LaTeX"
+  "JMeter"
+  "MariaDB"
+  "MongoDB"
+  "PostgreSQL"
+  "Firebase"
+  "ngrok"
+  "Unity"
+)
+
+DEV_SCRIPTS=(
+  "docker.sh"
+  "rust.sh"
+  "flutter.sh"
+  "go.sh"
+  "dotnet.sh"
+  "laravel.sh"
+  "latex.sh"
+  "jmeter.sh"
+  "mariadb.sh"
+  "mongodb.sh"
+  "postgres.sh"
+  "firebase.sh"
+  "ngrok.sh"
+  "unity.sh"
+)
+
+SELECTED=$(gum choose --multiple --height 16 --header "Select dev tools:" "${DEV_LABELS[@]}" 2>/dev/null || echo "")
+
+if [ -n "$SELECTED" ]; then
+  while IFS= read -r label; do
+    for i in "${!DEV_LABELS[@]}"; do
+      if [ "$label" = "${DEV_LABELS[$i]}" ]; then
+        script="${DEV_SCRIPTS[$i]}"
+        gum style --foreground 213 "Installing $label..."
+        if ! "$SCRIPTS/stand-alone/dev/$script"; then
+          gum style --foreground 196 "Failed to install $label. Continuing..."
+        fi
+        break
+      fi
+    done
+  done <<< "$SELECTED"
+fi
+
+# === MARKER FILE ===
+mkdir -p "$HOME/.config"
+touch "$MARKER_FILE"
+
+# === SUMMARY ===
+echo
+gum style --border double --padding "1 2" --foreground 212 \
+  "Phase 1 complete!"
+
+gum style --foreground 213 "Next steps:"
+gum style --foreground 255 "  1. Reboot the system"
+gum style --foreground 255 "  2. Run Phase 2:  ~/dotfiles/scripts/setup-post-reboot.sh"
+echo
+gum style --foreground 240 "  (zsh, oh-my-zsh, and plugins are installed in Phase 2"
+gum style --foreground 240 "   because they break the current shell session)"

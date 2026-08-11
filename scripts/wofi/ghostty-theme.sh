@@ -11,7 +11,7 @@ done < <(find "$THEMES_DIR" -maxdepth 1 -type f -print0 | sort -z)
 CHOICE=$(printf '%s\n' "${STYLES[@]}" | wofi --dmenu --prompt "Ghostty Theme")
 
 if [ -n "$CHOICE" ]; then
-  inotify-send --app-name=Ghostty "Changing theme to $CHOICE"
+  notify-send --app-name=Ghostty "Changing theme to $CHOICE"
   sed -i "s/^theme *=.*/theme = $CHOICE/g" "$CONFIG"
 fi
 

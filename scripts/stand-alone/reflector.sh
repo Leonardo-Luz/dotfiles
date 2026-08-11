@@ -20,9 +20,9 @@ mkdir -p "$(dirname "$DEST")" || {
   exit 1
 }
 
-# Move the file using sudo, replacing if it exists
-sudo mv "$SRC" "$DEST" || {
-  echo "Error: Could not move file '$SRC' to '$DEST'. Check permissions."
+# Copy the file using sudo, replacing if it exists
+sudo cp -f "$SRC" "$DEST" || {
+  echo "Error: Could not copy file '$SRC' to '$DEST'. Check permissions."
   exit 1
 }
 

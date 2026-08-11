@@ -23,9 +23,9 @@ if [ -d "$ZSH" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH}/custom/plugins/zsh-autosuggestions"
   fi
 
-  # === MOVE CONFIG FILES ===
-  echo "==> Moving config files..."
-  RUN_SCRIPT=true $HOME/dotfiles/scripts/update-zsh-files.sh
+  # === LINK CONFIG FILES ===
+  echo "==> Linking config files..."
+  RUN_SCRIPT=true "$HOME/dotfiles/scripts/config/update-config-files.sh"
 else
   echo "oh-my-zsh not installed!"
   exit 1

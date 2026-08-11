@@ -25,7 +25,7 @@ echo "→ Switching to theme: $theme"
 
 # --- File link mapping ---
 declare -A links=(
-  ["$HOME/.zshrc.d/styles"]="fzf.zsh"
+  ["$HOME/.config/.zshrc.d/styles"]="fzf.zsh"
   ["$HOME/.config/ghostty/themes"]="ghostty.theme"
   ["$HOME/.config/ghostty/shaders"]="ghostty_cursor_trail.glsl"
   ["$HOME/.config/hypr"]="hyprpaper.conf"
@@ -34,7 +34,7 @@ declare -A links=(
   ["$HOME/.config/waybar"]="waybar.css"
   ["$HOME/.config/wofi"]="wofi.css"
   ["$HOME/.config/hypr/hyprland"]="appearance.conf"
-  ["$HOME/.zshrc.d/ohmyzsh"]="ohmyzsh.zsh"
+  ["$HOME/.config/.zshrc.d/ohmyzsh"]="ohmyzsh.zsh"
   ["$HOME/.config/qutebrowser/config"]="appearance.py"
   ["$HOME/.config/obs-studio/themes"]="obs-theme.obt"
   ["$HOME/.config/qt5ct/colors"]="qt.conf"
@@ -43,7 +43,8 @@ declare -A links=(
 
 for dest_dir in "${!links[@]}"; do
   file="${links[$dest_dir]}"
-  if [ -d "$dest_dir" ] && [ -f "$CURRENT_LINK/$file" ]; then
+  if [ -f "$CURRENT_LINK/$file" ]; then
+    mkdir -p "$dest_dir"
     ln -sf "$CURRENT_LINK/$file" "$dest_dir/${file##*/}"
     echo "Linked: $file → $dest_dir/"
   fi

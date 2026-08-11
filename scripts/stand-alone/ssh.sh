@@ -66,7 +66,11 @@ done
 
 echo "Saving iptables rules for persistence..."
 sudo iptables-save | sudo tee /etc/iptables/iptables.rules > /dev/null
-sudo systemctl enable iptables
+
+# NOTE: Do NOT enable iptables.service — it conflicts with ufw.service
+# ufw manages iptables rules itself; enabling iptables.service would
+# overwrite ufw's rules on boot. The rules above are applied at runtime
+# and managed by knockd via ufw commands.
 
 echo "Enabling and starting knockd service..."
 sudo systemctl enable knockd

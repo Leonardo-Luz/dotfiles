@@ -4,8 +4,11 @@ end
 
 local set = vim.keymap.set
 
+local configs = require("lspconfig.configs")
+local util = require("lspconfig.util")
+
 local extend = function(name, key, values)
-  local mod = require("lspconfig.configs")[name]
+  local mod = configs[name]
   if not mod or not mod.default_config then
     return values
   end
@@ -40,8 +43,24 @@ if pcall(require, 'cmp_nvim_lsp') then
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 end
 
+if not configs.godot then
+  configs.godot = {
+    default_config = {
+      name = "godot",
+      cmd = { "socat", "STDIO", "TCP:127.0.0.1:6005" },
+      filetypes = { "gdscript", "gd" },
+      root_dir = util.root_pattern("project.godot"),
+    },
+  }
+end
+
 -- your servers
 local servers = {
+  godot = {
+    manual_install = true,
+    cmd = { "socat", "STDIO", "TCP:127.0.0.1:6005" },
+    filetypes = { "gdscript", "gd" },
+  },
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {

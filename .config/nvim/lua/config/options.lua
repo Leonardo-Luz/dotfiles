@@ -15,6 +15,9 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.cursorline = true
 vim.opt.scrolloff = 15
 
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevelstart = 99
 
@@ -41,5 +44,12 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en_us", "pt_br" }
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dashboard",
+  callback = function()
+    vim.opt_local.spell = false
   end,
 })

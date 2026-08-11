@@ -65,7 +65,7 @@ screenkey.setup(
 	}
 )
 
-screenkey.toggle()
+-- screenkey.toggle()
 
 vim.keymap.set("n", "<leader>tk", function()
 	screenkey.toggle()

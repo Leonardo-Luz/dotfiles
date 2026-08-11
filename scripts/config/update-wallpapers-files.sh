@@ -9,14 +9,18 @@ fi
 SRC="$HOME/dotfiles/wallpapers/"
 DEST="$HOME/wallpapers/"
 
-echo "==> Moving Wallpapers..."
+echo "==> Linking wallpapers..."
 if [ -d "$SRC" ]; then
     # Create the destination directory if it doesn't exist
     mkdir -p "$DEST"
 
-    cp -rf "$SRC"* "$DEST"
+    # Loop through all wallpapers in the source directory
+    for wallpaper in "$SRC"*; do
+        target="$DEST/$(basename "$wallpaper")"
+        ln -sf "$wallpaper" "$target"
+    done
 
-    echo "==> Wallpapers moved."
+    echo "==> Wallpapers linked to $DEST."
 else
     echo "==> Wallpapers directory not found: $SRC."
 fi

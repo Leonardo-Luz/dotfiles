@@ -1,6 +1,8 @@
 # TODO
 
-- [ ] implement stow package
+- [x] implement symlink strategy (replaced stow)
+- [x] implement two-phase installer (setup-arch-env.sh + setup-post-reboot.sh)
+- [x] implement gum TUI for installer
 
 - [ ] implement zoom on mouse toggle script
 
@@ -9,9 +11,9 @@
     - [x] Unity/
     - [x] tmp/
     - [x] flutter/
-- [ ] Organize config directories to .config/
+- [x] Organize config directories to .config/
+    - [x] .zshrc.d/ (consolidated to .config/.zshrc.d)
     - [ ] .cargo/
-    - [ ] .zshrc.d/
     - [ ] .vim
     - [ ] .oh-my-zsh/
 
@@ -22,6 +24,7 @@
 
 - [x] add opencode
 - [x] add terminal-based mail (neomutt)
+- [x] replace neofetch with fastfetch
 - [ ] add terminal-based music player (with ytb support)
 
 - [ ] animated wallpapers (yay -S mpvpaper)

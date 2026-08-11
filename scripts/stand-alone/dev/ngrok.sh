@@ -1,10 +1,11 @@
 #!/bin/bash
 
-wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+TMP_DIR=$(mktemp -d)
+wget -O "$TMP_DIR/ngrok-v3-stable-linux-amd64.tgz" https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
 
-sudo tar xvzf ./ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
+sudo tar xzf "$TMP_DIR/ngrok-v3-stable-linux-amd64.tgz" -C /usr/local/bin
 
-rm -rf ngrok-v3-stable-linux-amd64.tgz
+rm -rf "$TMP_DIR"
 
 echo "authentication: ngrok config add-authtoken <token>"
 echo "get your token in ngrok web dashboard"

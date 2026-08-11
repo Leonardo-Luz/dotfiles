@@ -1,0 +1,35 @@
+# local.conf — Machine-specific Hyprland overrides (not tracked by git)
+#
+# This file is sourced by hyprland.conf and is meant for settings
+# that are specific to your machine (monitor layout, workspace names,
+# device-specific input config, etc).
+#
+# To use: cp local.conf.example local.conf
+#         then edit local.conf with your machine-specific settings
+#
+# Common use cases:
+
+# === MONITOR LAYOUT ===
+# Override the default monitor config from data.conf
+# monitor=DP-1,2560x1440@144,0x0,1
+# monitor=HDMI-A-1,1920x1080,2560x0,1
+# monitor=eDP-1,1920x1080,auto,1.25
+
+# === DEVICE-SPECIFIC INPUT ===
+# device {
+#     name = your-mouse-device-name
+#     sensitivity = -0.5
+#     accel_profile = flat
+# }
+
+# === WORKSPACE ASSIGNMENTS ===
+# workspace = 1, monitor:DP-1
+# workspace = 2, monitor:DP-1
+# workspace = 3, monitor:HDMI-A-1
+
+# === LOCAL AUTOSTART ===
+# exec-once = nm-applet --indicator
+# exec-once = waybar --config ~/.config/waybar/full.jsonc --style ~/.config/waybar/full.css
+
+# === LOCAL KEYBINDINGS ===
+# bind = SUPER ALT, P, exec, ~/.local/bin/some-script.sh

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="$HOME/dotfiles/wallpapers"
+DIR="$HOME/wallpapers"
 
 # FILES=($(ls "$DIR" | sed 's/\.png$//' | sed 's/\.jpg$//'))
 FILES=$(ls "$DIR")

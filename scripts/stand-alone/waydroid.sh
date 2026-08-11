@@ -2,7 +2,7 @@
 
 # https://wiki.archlinux.org/title/Waydroid
 
-yay -S waydroid
+sudo pacman -S --needed --noconfirm waydroid
 
 ## Kernel config
 # sudo modprobe binder_linux
@@ -14,5 +14,8 @@ yay -S waydroid
 
 waydroid init -s GAPPS
 
-sudo systemclt start waydroid-container.service
-sudo systemclt enable waydroid-container.service
+sudo systemctl start waydroid-container.service
+sudo systemctl enable waydroid-container.service
+
+# For flutter development sdkmanager is required
+# https://developer.android.com/tools/sdkmanager

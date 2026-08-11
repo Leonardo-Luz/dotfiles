@@ -6,6 +6,7 @@ essentials=(
   unzip
   fd
   git
+  gum
   libnotify
   mako
   man-db
@@ -30,12 +31,17 @@ utilities=(
   wl-clipboard # clipboard integration
   tldr
   xdg-desktop-portal-hyprland
+  xdg-desktop-portal-gtk
   imagemagick # image render on terminal
   neomutt # email client
   traceroute
   cava # music visualizer
   yt-dlp
   ffmpeg
+  gnuplot # Graph generator
+  android-tools
+  socat
+  fastfetch
 )
 
 # === FONTS ===
@@ -100,7 +106,7 @@ dev_langs=(
   lua
   luarocks
   jq
-  zig ## OUTDATED - v0.13 -> v0.14 (use AUR ?)
+  zig
 )
 
 # === DATABASES ===
@@ -114,6 +120,8 @@ dev_tools=(
   tree-sitter-cli
   tree
   love
+  godot
+  # godot-mono
 )
 
 # INSTALL ALL PACMAN PACKAGES

@@ -16,31 +16,32 @@
     git clone https://github.com/leonardo-luz/dotfiles.git
 
     # Edit the packages you want to install
-    vim ~/dotfiles/scripts/install-pacman-packages.sh
-    vim ~/dotfiles/scripts/install-yay-packages.sh
+    vim ~/dotfiles/scripts/config/install-pacman-packages.sh
+    vim ~/dotfiles/scripts/config/install-yay-packages.sh
 
-    # This will overwrite some config files from .config so backup those before, if you want
-    # If you need to rerun this script, reboot your system before doing it
+    # Phase 1: System setup (installs packages, configs, services, optional tools)
+    # Uses gum TUI to prompt for optional components (bluetooth, virt, dev tools, etc.)
+    # Does NOT install zsh/oh-my-zsh (that breaks the shell session)
     ~/dotfiles/scripts/setup-arch-env.sh
 
-    sudo vim /etc/libvirt/libvirtd.conf # Uncomment: unix_sock_group, if libvirt was installed
-    sudo vim /usr/share/wayland-sessions/hyprland.desktop # replace by the content in ~/dotfiles/ly/hyprland.desktop
-    sudo vim /etc/ly/config.ini # replace by the content in ~/dotfiles/ly/config.ini"
-    sudo vim /etc/xdg/reflector/reflector.conf # replace by the content in ~/dotfiles/etc/xdg/reflector/reflector.conf"
-
-    sudo mysql_secure_installation # will change to mariadb_secure_installation
-
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-    # You will probably need to reboot here
-
-    # this will remove your zsh config so backup it before if you want
-    ~/dotfiles/scripts/setup-zsh-plugins.sh
-
-    # [OPTIONAL] update mirrors weekly
-    sudo systemctl enable reflector.timer
-    sudo systemctl start reflector.timer
-
+    # Reboot before Phase 2
     reboot
+
+    # Phase 2: Post-reboot (installs zsh, oh-my-zsh, plugins, links configs)
+    ~/dotfiles/scripts/setup-post-reboot.sh
+
+    # Log out and log back in (or reboot) for shell change to take effect
+
+    # [OPTIONAL] Secure MariaDB
+    sudo mariadb_secure_installation
+
+    # [OPTIONAL] Pick a theme
+    switch-theme light    # or: solarized, autumn, retro, dark-forest, dracula, tokyonight
+
+    # [OPTIONAL] Install any component you skipped later:
+    #   ~/dotfiles/scripts/stand-alone/bluetooth.sh
+    #   ~/dotfiles/scripts/stand-alone/virt-manager.sh
+    #   ~/dotfiles/scripts/stand-alone/dev/docker.sh
+    #   (see ~/dotfiles/scripts/stand-alone/ for all options)
 
 ```

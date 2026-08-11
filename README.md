@@ -65,7 +65,7 @@ Keep your environment updated and synced using the commands below.
     # Full AUR upgrade (-Suy)
     update-yay -Suy
 
-    # Sync and replace configuration files
+    # Sync and link configuration files
     RUN_SCRIPT=true config-sync
 ```
 

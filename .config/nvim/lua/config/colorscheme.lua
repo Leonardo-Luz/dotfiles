@@ -62,5 +62,9 @@ vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
         vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#444444" })
       end
     end
+
+    vim.api.nvim_set_hl(0, "DashboardBold", {
+      bold = true,
+    })
   end
 })

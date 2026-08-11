@@ -1,11 +1,12 @@
 #!/bin/bash
 
 if ! command -v yay &>/dev/null; then
-  git clone https://aur.archlinux.org/yay-bin.git
-  cd yay-bin || exit
+  TMP_DIR=$(mktemp -d)
+  git clone https://aur.archlinux.org/yay-bin.git "$TMP_DIR/yay-bin"
+  cd "$TMP_DIR/yay-bin" || exit
   makepkg -si --noconfirm
-  cd ..
-  rm -rf yay-bin
+  cd - || exit
+  rm -rf "$TMP_DIR"
 
   yay -Suy --noconfirm
 else

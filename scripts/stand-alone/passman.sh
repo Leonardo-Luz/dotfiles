@@ -1,11 +1,12 @@
 #!/bin/bash
 
-git clone https://github.com/leonardo-luz/rust-passman-cli
+TMP_DIR=$(mktemp -d)
+git clone https://github.com/leonardo-luz/rust-passman-cli "$TMP_DIR/rust-passman-cli"
 
-cd rust-passman-cli/
+cd "$TMP_DIR/rust-passman-cli" || exit
 
 cargo install --path .
 
-cd ..
+cd - || exit
 
-rm -rf rust-passman-cli
+rm -rf "$TMP_DIR"

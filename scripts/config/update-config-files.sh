@@ -7,7 +7,7 @@ if [ "$RUN_SCRIPT" != "true" ]; then
 fi
 
 echo "==> Linking config files..."
-notify-send --app-name=Config "Sync" "Linking config files..."
+notify-send --app-name=Config "Sync" "Linking config files..." 2>/dev/null || true
 
 SRC="$HOME/dotfiles/.config"
 DEST="$HOME/.config"
@@ -33,4 +33,18 @@ ZSH_SRC="$HOME/dotfiles/zsh"
 if [ -d "$ZSH_SRC" ]; then
   ln -sf "$ZSH_SRC/.zshrc" "$HOME/.zshrc"
   echo "==> zsh file linked"
+fi
+
+WALLPAPERS_SRC="$HOME/dotfiles/wallpapers"
+WALLPAPERS_DEST="$HOME/wallpapers"
+
+if [ -d "$WALLPAPERS_SRC" ]; then
+    mkdir -p "$WALLPAPERS_DEST"
+    for wallpaper in "$WALLPAPERS_SRC"/*; do
+        target="$WALLPAPERS_DEST/$(basename "$wallpaper")"
+        ln -sf "$wallpaper" "$target"
+    done
+    echo "==> Wallpapers linked to $WALLPAPERS_DEST."
+else
+    echo "==> Wallpapers directory not found: $WALLPAPERS_SRC."
 fi

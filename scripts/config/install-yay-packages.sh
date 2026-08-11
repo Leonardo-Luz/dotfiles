@@ -4,7 +4,6 @@ yay_pkgs=(
   hyprpaper
   waybar
   wlogout-git
-  neofetch
   dolphin
   neovim-nightly-bin
 )
