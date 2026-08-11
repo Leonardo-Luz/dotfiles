@@ -1,5 +1,5 @@
 # Main Zsh configuration file
-export ZSHRC_DIR="$HOME/.config/.zshrc.d"
+export ZSHRC_DIR="$HOME/dotfiles/.config/.zshrc.d"
 
 # Source all modules
 for file in $ZSHRC_DIR/*.zsh; do

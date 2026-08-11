@@ -267,7 +267,7 @@ OPTIONAL_SCRIPTS=(
 if command -v gum &>/dev/null; then
 
   SELECTED=$(gum choose \
-    --multiple \
+    --no-limit \
     --height 12 \
     --header "Select optional components:" \
     "${OPTIONAL_LABELS[@]}")
@@ -351,7 +351,7 @@ DEV_SCRIPTS=(
 if command -v gum &>/dev/null; then
 
   SELECTED=$(gum choose \
-    --multiple \
+    --no-limit \
     --height 16 \
     --header "Select dev tools:" \
     "${DEV_LABELS[@]}")
