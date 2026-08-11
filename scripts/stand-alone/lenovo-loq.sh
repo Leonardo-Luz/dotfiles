@@ -13,7 +13,7 @@ sudo pacman -S --needed --noconfirm \
   lib32-nvidia-utils \
   libva-nvidia-driver
 
-# === INTEL DRIVERS (i7-13620H - 13th gen Raptor Lake) ===
+# === INTEL DRIVERS (i5-13450HX - 13th gen Raptor Lake) ===
 echo "==> Installing Intel drivers..."
 sudo pacman -S --needed --noconfirm \
   intel-ucode \
@@ -29,9 +29,12 @@ echo "==> Installing audio firmware..."
 sudo pacman -S --needed --noconfirm sof-firmware
 
 # === POWER MANAGEMENT ===
+# NOTE: throttled is required for the CPU to properly turbo boost on LOQ
+#       (per Arch Wiki, thermald does NOT work properly for this).
+#       throttled coexists with TLP (already installed) — TLP handles
+#       governors/peripherals, throttled handles power limits/undervolt.
 echo "==> Installing power management tools..."
 sudo pacman -S --needed --noconfirm \
-  thermald \
   throttled \
   cpupower \
   lm_sensors \
@@ -77,7 +80,6 @@ fi
 
 # === ENABLE SERVICES ===
 echo "==> Enabling services..."
-sudo systemctl enable --now thermald
 sudo systemctl enable --now throttled
 sudo systemctl enable --now nvidia-powerd
 sudo systemctl enable --now fwupd
@@ -94,3 +96,7 @@ echo "  - Fn+Space toggles keyboard backlight"
 echo "  - Suspend uses S0ix (Modern Standby), not S3 (deep sleep)"
 echo "  - If suspend fails, check NVIDIA S0ix power management in /etc/modprobe.d/nvidia.conf"
 echo "  - Fan control may not work on 2024+ LOQ models with LenovoLegionLinux"
+echo "  - Undervolting is LOCKED by default. To unlock, access the Advanced BIOS"
+echo "    (requires external tool: https://github.com/Thomashighbaugh/Lenovo-Legion-Advanced-Bios/)"
+echo "    and disable: CPU Lock Configuration, Overclocking Lock, Undervolt Protection"
+echo "    Then uncomment the [under-volt] section in /etc/throttled.conf"
