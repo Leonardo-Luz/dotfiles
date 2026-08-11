@@ -24,36 +24,41 @@ ln -nsf "$theme_dir" "$CURRENT_LINK"
 echo "→ Switching to theme: $theme"
 
 # --- File link mapping ---
+# Format: "destination_dir:dest_filename"="source_filename"
+# Some apps load a fixed filename (e.g. waybar loads style.css, not waybar.css),
+# so we need to control the destination name separately from the source.
 declare -A links=(
-  ["$HOME/.config/.zshrc.d/styles"]="fzf.zsh"
-  ["$HOME/.config/ghostty/themes"]="ghostty.theme"
-  ["$HOME/.config/ghostty/shaders"]="ghostty_cursor_trail.glsl"
-  ["$HOME/.config/hypr"]="hyprpaper.conf"
-  ["$HOME/.config/mako"]="mako"
-  ["$HOME/.config/tmux/themes"]="tmux_theme.conf"
-  ["$HOME/.config/waybar"]="waybar.css"
-  ["$HOME/.config/wofi"]="wofi.css"
-  ["$HOME/.config/hypr/hyprland"]="appearance.conf"
-  ["$HOME/.config/.zshrc.d/ohmyzsh"]="ohmyzsh.zsh"
-  ["$HOME/.config/qutebrowser/config"]="appearance.py"
-  ["$HOME/.config/obs-studio/themes"]="obs-theme.obt"
-  ["$HOME/.config/qt5ct/colors"]="qt.conf"
-  ["$HOME/.local/share/color-schemes/kvtheme"]="kvtheme.kvconfig"
+  ["$HOME/.config/.zshrc.d/styles:fzf.zsh"]="fzf.zsh"
+  ["$HOME/.config/ghostty/themes:ghostty.theme"]="ghostty.theme"
+  ["$HOME/.config/ghostty/shaders:ghostty_cursor_trail.glsl"]="ghostty_cursor_trail.glsl"
+  ["$HOME/.config/hypr:hyprpaper.conf"]="hyprpaper.conf"
+  ["$HOME/.config/mako:mako"]="mako"
+  ["$HOME/.config/tmux/themes:tmux_theme.conf"]="tmux_theme.conf"
+  ["$HOME/.config/waybar:style.css"]="waybar.css"
+  ["$HOME/.config/wofi:style.css"]="wofi.css"
+  ["$HOME/.config/hypr/hyprland:appearance.conf"]="appearance.conf"
+  ["$HOME/.config/.zshrc.d/ohmyzsh:ohmyzsh.zsh"]="ohmyzsh.zsh"
+  ["$HOME/.config/qutebrowser/config:appearance.py"]="appearance.py"
+  ["$HOME/.config/obs-studio/themes:obs-theme.obt"]="obs-theme.obt"
+  ["$HOME/.config/qt5ct/colors:qt.conf"]="qt.conf"
+  ["$HOME/.local/share/color-schemes/kvtheme:kvtheme.kvconfig"]="kvtheme.kvconfig"
 )
 
-for dest_dir in "${!links[@]}"; do
-  file="${links[$dest_dir]}"
-  if [ -f "$CURRENT_LINK/$file" ]; then
+for dest_key in "${!links[@]}"; do
+  dest_dir="${dest_key%:*}"
+  dest_file="${dest_key##*:}"
+  src_file="${links[$dest_key]}"
+  if [ -f "$CURRENT_LINK/$src_file" ]; then
     mkdir -p "$dest_dir"
-    ln -sf "$CURRENT_LINK/$file" "$dest_dir/${file##*/}"
-    echo "Linked: $file → $dest_dir/"
+    ln -sf "$CURRENT_LINK/$src_file" "$dest_dir/$dest_file"
+    echo "Linked: $src_file → $dest_dir/$dest_file"
   fi
 done
 
 # --- Reload / refresh components ---
-pkill hyprpaper && hyprpaper & disown
-pkill waybar && waybar & disown
-pkill mako && mako & disown
+pkill hyprpaper 2>/dev/null; hyprpaper & disown
+pkill waybar 2>/dev/null; waybar & disown
+pkill mako 2>/dev/null; mako & disown
 
 # Reload zsh (if running under zsh)
 if [ -n "${ZSH_VERSION:-}" ]; then

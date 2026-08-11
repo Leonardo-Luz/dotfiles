@@ -21,7 +21,7 @@ fi
 
 case "$TERMINAL" in
   ghostty)
-    yay -S --needed --noconfirm ghostty-git
+    sudo pacman -S --needed --noconfirm ghostty
     ;;
   alacritty)
     sudo pacman -S --needed --noconfirm alacritty

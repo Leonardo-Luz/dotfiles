@@ -72,7 +72,6 @@ RUN_SCRIPT=true "$SCRIPTS/config/update-wallpapers-files.sh"
 # === ENABLE SYSTEM SERVICES ===
 gum style --foreground 213 "Enabling system services..."
 sudo systemctl enable --now tlp
-sudo systemctl enable ly.service
 
 # === NETWORK ===
 if [ -f /etc/NetworkManager/conf.d/wifi_backend.conf ] && [ "$IS_RERUN" = true ]; then
@@ -118,10 +117,24 @@ else
   "$SCRIPTS/stand-alone/tmux.sh"
 fi
 
-# === DISPLAY MANAGER CONFIG ===
-gum style --foreground 213 "Configuring display manager (ly)..."
-sudo cp -f "$DOTFILES/etc/ly/hyprland.desktop" /usr/share/wayland-sessions/hyprland.desktop
-sudo cp -f "$DOTFILES/etc/ly/config.ini" /etc/ly/config.ini
+# === DISPLAY MANAGER ===
+echo
+gum style --foreground 213 "Display manager:"
+gum style --foreground 255 "  ly is a lightweight TUI display manager (default)"
+gum style --foreground 255 "  lightdm is a graphical display manager with slick-greeter"
+
+DM_CHOICE=$(gum choose "ly" "lightdm" --header "Select display manager:" --height 5 2>/dev/null || echo "ly")
+
+if [ "$DM_CHOICE" = "lightdm" ]; then
+  gum style --foreground 213 "Configuring LightDM..."
+  "$SCRIPTS/stand-alone/lightdm.sh"
+else
+  gum style --foreground 213 "Configuring display manager (ly)..."
+  sudo pacman -S --needed --noconfirm ly
+  sudo cp -f "$DOTFILES/etc/ly/hyprland.desktop" /usr/share/wayland-sessions/hyprland.desktop
+  sudo cp -f "$DOTFILES/etc/ly/config.ini" /etc/ly/config.ini
+  sudo systemctl enable ly@tty2.service
+fi
 
 # === OPTIONAL COMPONENTS ===
 echo
