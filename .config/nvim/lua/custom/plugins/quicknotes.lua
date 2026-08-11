@@ -1,7 +1,7 @@
 return {
   {
-    -- "leonardo-luz/quicknotes.nvim",
-    dir = '~/documents/code/git/misc/lua/quicknotes.nvim',
+    "leonardo-luz/quicknotes.nvim",
+    -- dir = '~/documents/code/git/misc/lua/quicknotes.nvim',
     opts = {
       custom_path = "/home/leonardo-luz/documents/notes/Quicknotes",
       keys = {

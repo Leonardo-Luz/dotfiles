@@ -142,6 +142,7 @@ gum style --foreground 213 "Optional components:"
 gum style --foreground 255 "  (Space to select, Enter to confirm, Esc to skip)"
 
 OPTIONAL_LABELS=(
+  "Lenovo LOQ 15IRX9 drivers (NVIDIA, Intel, power mgmt)"
   "Bluetooth"
   "Virtualization (virt-manager)"
   "SSH hardening (knockd + iptables)"
@@ -151,6 +152,7 @@ OPTIONAL_LABELS=(
 )
 
 OPTIONAL_SCRIPTS=(
+  "lenovo-loq.sh"
   "bluetooth.sh"
   "virt-manager.sh"
   "ssh.sh"
@@ -159,7 +161,7 @@ OPTIONAL_SCRIPTS=(
   "waydroid.sh"
 )
 
-SELECTED=$(gum choose --multiple --height 10 --header "Select optional components:" "${OPTIONAL_LABELS[@]}" 2>/dev/null || echo "")
+SELECTED=$(gum choose --multiple --height 12 --header "Select optional components:" "${OPTIONAL_LABELS[@]}" 2>/dev/null || echo "")
 
 if [ -n "$SELECTED" ]; then
   while IFS= read -r label; do

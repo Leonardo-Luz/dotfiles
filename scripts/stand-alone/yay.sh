@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo pacman -S --needed --noconfirm base-devel fakeroot debugedit
+
 if ! command -v yay &>/dev/null; then
   TMP_DIR=$(mktemp -d)
   git clone https://aur.archlinux.org/yay-bin.git "$TMP_DIR/yay-bin"
