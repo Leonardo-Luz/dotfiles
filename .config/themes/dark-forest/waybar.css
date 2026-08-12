@@ -24,7 +24,7 @@ window#waybar {
 }
 
 .modules-left, .modules-center, .modules-right {
-    background: #1e2326;
+    background: rgba(0,0,0,0.65);
     border-radius: 12px;
     padding: 5px;
     margin: 10px;
@@ -57,9 +57,35 @@ window#waybar {
     border-radius: 32px;
 }
 
-#custom-playerctl, #backlight, #disk, #memory, #cpu, #temperature, #custom-date, #custom-lock, #clock, #battery, #pulseaudio, #network, #custom-randwall, #custom-launcher, #idle_inhibitor {
+#custom-playerctl,
+#backlight,
+#custom-date,
+#custom-lock,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#temperature,
+#disk,
+#memory,
+#cpu,
+#custom-randwall,
+#custom-launcher,
+#custom-ping,
+#idle_inhibitor {
     background: transparent;
+    padding: 5px 8px 5px 8px;
+    border-radius: 5px;
+}
+
+#network {
     padding: 5px 12px 5px 12px;
+}
+
+
+#battery,
+#pulseaudio {
+    padding: 5px 5px 5px 5px;
 }
 
 #tray {
@@ -71,8 +97,6 @@ window#waybar {
 }
 
 #battery {
-    padding: 5px 15px 5px 10px;
-    border-radius: 5px;
     color: #e67e80;
 }
 
@@ -92,25 +116,16 @@ window#waybar {
     box-shadow: 0px 8px 8px -10px rgba(0,0,0,0.8) inset;
 }
 
-#custom-ping {
-    padding: 5px 12px 5px 12px;
-    border-radius: 5px;
-}
-
-#custom-ping.good {
+#temperature.good, #custom-ping.good {
     color: #e67e80;
 }
 
-#custom-ping.warning {
-    background-color: #f77777;
-    color: #44486b;
-    box-shadow: 0px 8px 8px -10px rgba(0,0,0,0.8) inset;
+#temperature.warning, #custom-ping.warning {
+    color: #f77777;
 }
 
-#custom-ping.critical {
-    background-color: #e67e80;
-    color: #44486b;
-    box-shadow: 0px 8px 8px -10px rgba(0,0,0,0.8) inset;
+#disk.critical, #memory.critical, #cpu.critical, #temperature.critical, #custom-ping.critical {
+    color: #e67e80;
 }
 
 #pulseaudio.muted {
